@@ -1,1 +1,4 @@
 client/node_modules
+server/bgv_country_db_lookup
+server/log
+server/helib.log
