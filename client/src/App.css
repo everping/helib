@@ -1,0 +1,22 @@
+.homepage-class .text-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+.homepage-class .text-input input {
+  width: 30%;
+  height: 2rem;
+  font-size: 17px;
+  border-width: 0.1rem;
+  margin-left: 1rem;
+  margin-bottom: 0.2rem;
+  padding: 6px;
+  /* background: none; */
+}
+
+.homepage-class .text-input input:focus {
+  outline: none;
+}
