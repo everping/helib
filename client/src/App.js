@@ -1,27 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
-
-import {spawn, kill} from 'react-native-childprocess'
-
 import './App.css';
+import axios from 'axios';
+import { serviceURL, serverURL } from './context/constant';
 
-let cmdID;
- 
-export async function start(){
-    cmdID = await spawn('/sbin/ping', ['google.com'], {
-        pwd: "/",
-        stdout: (output) => {
-            console.log('>>>', output)
-        }
-    });
-}
- 
-export async function stop(){
-    kill(cmdID);
-}
+
 
 
 function App() {
   const [query, setQuery] = useState("");
+  const [result, setResult] = useState("");
 
 
   const handleChange = (event) => {
@@ -39,30 +26,29 @@ function App() {
 
   const submitQuery = async () => {
       // get encrypted query json
+    setResult("Searching ...")
+    let country = query;
+
+    let url = serviceURL + '/enc?country=' + country;
+    let res = await axios.get(url);
+    let data = res.data
+
+    // console.log("check data", data)
+    
+
+    // send encrypted files to server
+    url = serverURL + '/search'
+    res = await axios.post(url, data);
+    data = res.data
+    // console.log(res)
 
 
-      // const data = {
-      //     content: content,
-      //     images: commentImages
-      // }
+    url = serviceURL + '/dec'
+    res = await axios.post(url, data);
+    
+    // console.log(res)
 
-      // // console.log("start sending...", data);
-
-      // const res = await repliesComment(props.postId, props.data._id, data);
-
-
-      // if(res.data.success){
-      //     // window.location.href = '/'; 
-      //     // console.log("success");
-      //     // await props.updateCommentCount();
-      //     // socketRef.current.emit("ClientSendServer", res.data.comment);
-      //     props.socket.emit("ClientSendServer-reply", props.data._id, res.data.comment);
-
-      //     setContent("");
-      //     setCommentImages([]);
-
-      //     return;
-      // }
+    setResult("The capacity of " + query + " is: " + res.data.ptx_result)
   }
 
   return (
@@ -70,11 +56,13 @@ function App() {
         <div className="text-input">
             <input 
                 type="text" 
-                placeholder="input query" 
+                placeholder="Input query" 
                 value = {query} 
                 onChange = {(event) => handleChange(event)}
                 onKeyDown={(e) => handleOnKeyDown(e)}
             ></input>
+
+            <div className="result">{result}</div>
         </div>
     </div>
   );
