@@ -48,7 +48,7 @@ function App() {
     
     // console.log(res)
 
-    setResult("The capacity of " + query + " is: " + res.data.ptx_result)
+    setResult("The capital of " + query + " is: " + res.data.ptx_result)
   }
 
   return (

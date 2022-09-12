@@ -2,6 +2,9 @@
 ## requirement:
 - install nodejs, npm, python
 
+## env:
+- linux
+
 ## load node_modules:
 - npm install
 
