@@ -31,15 +31,15 @@ def enc():
     pubkey = ""
     data = {}
     
-    f1 = open("./context.txt", "r")
+    f1 = open("context.txt", "r")
     context = f1.read()
     f1.close()
 
-    f2 = open("./enc_query.txt", "r")
+    f2 = open("enc_query.txt", "r")
     enc_query = f2.read()
     f2.close()
     
-    f3 = open("./pubkey.txt", "r")
+    f3 = open("pubkey.txt", "r")
     pubkey = f3.read()
     f3.close()
 
@@ -61,14 +61,14 @@ def dec():
     # exec binary file to get output
     data = request.get_json()
 
-    f1 = open("./enc_result.txt", "w")
+    f1 = open("enc_result.txt", "w")
     f1.write(data["enc_result"])
     f1.close()
 
     cmd = "/home/lab/Desktop/HElib_demo/service/utils/BGV_country_db_lookup_client_dec" + " > ./log/log.txt"
     subprocess.call(['bash', '-c', cmd])
 
-    str_result = open("./log/log.txt", "r").read().split("Query result: ")[-1].split("\u0000")[0]
+    str_result = open("log/log.txt", "r").read().split("Query result: ")[-1].split("\u0000")[0]
     print(str_result)
 
     # return output to client

@@ -19,15 +19,15 @@ def search():
     data = request.get_json()
 
     
-    f1 = open("./context.txt", "w")
+    f1 = open("context.txt", "w")
     f1.write(data["context"])
     f1.close()
 
-    f2 = open("./enc_query.txt", "w")
+    f2 = open("enc_query.txt", "w")
     f2.write(data["enc_query"])
     f2.close()
 
-    f3 = open("./pubkey.txt", "w")
+    f3 = open("pubkey.txt", "w")
     f3.write(data["pubkey"])
     f3.close()
 
@@ -37,7 +37,7 @@ def search():
     subprocess.call(['bash', '-c', cmd])
     
 
-    f4 = open("./enc_result.txt", "r")
+    f4 = open("enc_result.txt", "r")
     enc_result = f4.read()
     f4.close()
     
