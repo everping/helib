@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
   // Size of NTL thread pool (default =1)
   unsigned long nthreads = 1;
   // input database file name
-  std::string db_filename = "./countries_dataset.csv";
+  std::string db_filename = "./dataset.csv";
   // debug output (default no debug output)
   bool debug = false;
 
