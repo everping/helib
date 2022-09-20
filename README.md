@@ -25,7 +25,7 @@ cd /tmp/helib && mkdir build && cd build && cmake -DPACKAGE_BUILD=ON -DCMAKE_INS
 ```
 git clone https://github.com/everping/helib.git patient-search /opt/patient-search/
 
-cd /opt/helib/examples/BGV_country_db_lookup
+cd /tmp/helib/examples/BGV_country_db_lookup
 
 mv /opt/patient-search/helib_source/server.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/build/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/server/bin/server
 
