@@ -45,8 +45,8 @@ cd /opt/patient-search/src/client && npm install
 
 # Run
 ```
-/opt/patient-search/env/bin/python3 /opt/patient-search/src/server/server.py &
-/opt/patient-search/env/bin/python3 /opt/patient-search/src/service/service.py &
+cd /opt/patient-search/src/server && ../../env/bin/python3 server.py &
+cd /opt/patient-search/src/service && ../../env/bin/python3 service.py &
 cd /opt/patient-search/src/client && npm start &
 ```
 
