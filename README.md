@@ -23,15 +23,15 @@ cd /tmp/helib && mkdir build && cd build && cmake -DPACKAGE_BUILD=ON -DCMAKE_INS
 # Build
 ## Build search
 ```
-git clone https://github.com/everping/helib.git patient-search /opt/patient-search/
+git clone https://github.com/everping/helib.git /opt/patient-search/
 
 cd /tmp/helib/examples/BGV_country_db_lookup
 
-mv /opt/patient-search/helib_source/server.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/build/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/server/bin/server
+cp /opt/patient-search/helib_source/server.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/server/bin/server && cd -
 
-mv /opt/patient-search/helib_source/client_enc.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/build/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/service/bin/client_enc
+cp /opt/patient-search/helib_source/client_enc.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/service/bin/client_enc && cd -
 
-mv /opt/patient-search/helib_source/client_dec.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/build/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/service/bin/client_dec
+cp /opt/patient-search/helib_source/client_dec.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/service/bin/client_dec
 ```
 
 ## Create env
@@ -46,7 +46,7 @@ cd /opt/patient-search/src/client && npm install
 # Run
 ```
 /opt/patient-search/env/bin/python3 /opt/patient-search/src/server/server.py &
-/opt/patient-search/env/bin/python3 /opt/patient-search/src/server/service.py &
+/opt/patient-search/env/bin/python3 /opt/patient-search/src/service/service.py &
 cd /opt/patient-search/src/client && npm start &
 ```
 
