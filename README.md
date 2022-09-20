@@ -25,13 +25,17 @@ cd /tmp/helib && mkdir build && cd build && cmake -DPACKAGE_BUILD=ON -DCMAKE_INS
 ```
 git clone https://github.com/everping/helib.git /opt/patient-search/
 
+sed -e '/add_subdirectory(BGV_binary_arithmetic)/ s/^#*/#/' -i /tmp/helib/examples/CMakeLists.txt
+sed -e '/add_subdirectory(BGV_packed_arithmetic)/ s/^#*/#/' -i /tmp/helib/examples/CMakeLists.txt
+sed -e '/add_subdirectory(tutorial)/ s/^#*/#/' -i /tmp/helib/examples/CMakeLists.txt
+
 cd /tmp/helib/examples/BGV_country_db_lookup
 
-cp /opt/patient-search/helib_source/server.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/server/bin/server && cd -
+cp /opt/patient-search/src/server/server.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/server/bin/server && cd -
 
-cp /opt/patient-search/helib_source/client_enc.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/service/bin/client_enc && cd -
+cp /opt/patient-search/src/service/client_enc.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/service/bin/client_enc && cd -
 
-cp /opt/patient-search/helib_source/client_dec.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/service/bin/client_dec
+cp /opt/patient-search/src/service/client_dec.cpp BGV_country_db_lookup.cpp && rm -rf ../build && mkdir ../build && cd ../build && cmake -Dhelib_DIR=/opt/helib/helib_pack/share/cmake/helib .. && make -j16 && mv bin/BGV_country_db_lookup /opt/patient-search/src/service/bin/client_dec
 ```
 
 ## Create env
