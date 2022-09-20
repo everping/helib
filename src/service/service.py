@@ -16,6 +16,11 @@ CORS(app)
 ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 
+def remove_files(files):
+    for f in files:
+        os.remove(join(ROOT_PATH, f))
+
+
 # Route for seeing a data
 @app.route('/enc')
 def enc():
@@ -27,13 +32,13 @@ def enc():
 
     subprocess.call(['bash', '-c', cmd])
 
-    with open(join(ROOT_PATH, 'data', 'context.txt')) as f:
+    with open(join(ROOT_PATH, 'context.txt')) as f:
         context = f.read()
 
-    with open(join(ROOT_PATH, 'data', 'enc_query.txt')) as f:
+    with open(join(ROOT_PATH, 'enc_query.txt')) as f:
         enc_query = f.read()
 
-    with open(join(ROOT_PATH, 'data', 'pubkey.txt')) as f:
+    with open(join(ROOT_PATH, 'pubkey.txt')) as f:
         pubkey = f.read()
 
     data = {
@@ -41,6 +46,7 @@ def enc():
         'enc_query': enc_query,
         'pubkey': pubkey
     }
+    # remove_files(['context.txt', 'enc_query.txt', 'pubkey.txt'])
     # return output to client
     return data
 
@@ -53,12 +59,12 @@ def dec():
     with open(join(ROOT_PATH, 'enc_result.txt'), 'w') as f:
         f.write(data["enc_result"])
 
-    cmd = f"{join(ROOT_PATH, 'bin', 'client_enc')} > {join(ROOT_PATH, 'log.txt')}"
+    cmd = f"{join(ROOT_PATH, 'bin', 'client_dec')} > {join(ROOT_PATH, 'log.txt')}"
     subprocess.call(['bash', '-c', cmd])
 
     str_result = open(join(ROOT_PATH, 'log.txt'), "r").read().split("Query result: ")[-1].split("\u0000")[0]
     print(str_result)
-
+    remove_files(['log.txt', 'enc_result.txt', 'seckey.txt', 'context.txt', 'enc_query.txt', 'pubkey.txt'])
     # return output to client
     return {
         "ptx_result": str_result
@@ -68,3 +74,4 @@ def dec():
 # Running app
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=9999)
+

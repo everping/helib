@@ -255,9 +255,8 @@ int main(int argc, char* argv[])
 
   if (string_result.at(0) == 0x00) {
     string_result =
-        "Country name not in the database."
-        "\n*** Please make sure to enter the name of a European Country"
-        "\n*** with the first letter in upper case.";
+        "Patient not in the database."
+        "\n*** Please make sure to enter the corrected name";
   }
   std::cout << "\nQuery result: " << string_result << std::endl;
   helib::printNamedTimer(std::cout, "timer_TotalQuery");

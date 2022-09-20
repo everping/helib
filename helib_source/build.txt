@@ -6,14 +6,14 @@ Bước 1: clone repo này về https://github.com/homenc/HElib.git
 Bước 2: cd vào examples và làm theo README
     - tải HElib, xem hướng dẫn tải ở đây: https://github.com/homenc/HElib/blob/master/INSTALL.md
     - trong examples, tạo thư mục build, cd vào trong đó và chạy cmake:
-        cmake [-Dhelib_DIR=<directory-to-installed-HElib>/share/cmake/helib] <directory-to-examples> ..
+        cmake [-Dhelib_DIR=<irectory-to-installed-HElib>/share/cmake/helib] <directory-to-examples> ..
         trong đó: 
             directory-to-installed-HElib: địa chỉ lưu folder helib_pack (sau khi cài helib sẽ có folder này)
             directory-to-examples: để trống
         => cmake -Dhelib_DIR=<Địa chỉ tới helib_pack>/share/cmake/helib ..
 Bước 3: chạy make -j16 => file executable ở trong folder bin
 Bước 4: Tiếp tục ở folder example/build
-Bước 5: copy 3 file trong thư mục HElib_source_code ở repo https://github.com/ThaiHungN/HElib_demo.git vào thư mục này
+Bước 5: copy 3 file trong thư mục HElib_source_code ở repo https://github.com/phuctran/HElib_demo.git vào thư mục này
 Bước 6: Copy file cmakelists trong thư mục examples/BGV_country_db_lookup vào thư mục này, sau đó mở ra, BGV_country_db_lookup.cpp chính là file cpp mặc định sẽ được build, ta có thể sửa tên thành 1 trong 3 file ta mới copy vào, và build từng file một
 Bước 7: sau khi sửa tên file thành tên file cpp ta muốn build, chạy lệnh make, khi đó executable file sẽ được sinh ra ở trong file bin, tên là BGV_country_db_lookup, ta có thể đổi tên file binary này
 Bước 8: build 3 lần với 3 file cpp, ta sẽ thu được 3 file binary cho service và server
